@@ -1,5 +1,7 @@
 // console.log('Hello');
 
+import { cart } from "../data/cart.js";
+
 let productHtml = "";
 
 products.forEach((product) => {
@@ -115,6 +117,6 @@ document.querySelectorAll(".js-add-to-cart-button").forEach((btn) => {
 
     addedMessageTimeouts[productId] = timeoutId;
 
-    console.log(cart);
+    // console.log(cart);
   });
 });
