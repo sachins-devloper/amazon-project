@@ -98,7 +98,7 @@ function classListAdd(productId) {
 
 document.querySelectorAll(".js-add-to-cart-button").forEach((btn) => {
   btn.addEventListener("click", () => {
-    const { productId } = btn.dataset;
+    const productId = btn.dataset.productId;
 
     addToCart(productId);
 
