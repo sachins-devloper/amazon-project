@@ -1,4 +1,9 @@
-import { calculateCartQuantity, cart, removeFromCart } from "../data/cart.js";
+import {
+  calculateCartQuantity,
+  cart,
+  removeFromCart,
+  updateDeliveryoption,
+} from "../data/cart.js";
 import { deliveryOptions } from "../data/deliveryoptions.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
@@ -97,7 +102,9 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
 
     const isChecked = deliveryOption.id == cartItem.deliveryOptionId;
     html += `
-      <div class="delivery-option">
+      <div class="delivery-option js-delivery-option"
+      data-product-id="${matchingProduct.id}"
+      data-delivery-option-id="${deliveryOption.id}">
         <input type="radio"
         ${isChecked ? "checked" : ""}
           class="delivery-option-input"
@@ -179,5 +186,12 @@ document.querySelectorAll(".js-save-link").forEach((link) => {
     quantityLabel.innerHTML = newQuantity;
 
     updateCartQuantity();
+  });
+});
+
+document.querySelectorAll(".js-delivery-option").forEach((element) => {
+  element.addEventListener("click", () => {
+    const { productId, deliveryOptionId } = element.dataset;
+    updateDeliveryoption(productId, deliveryOptionId);
   });
 });
