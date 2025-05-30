@@ -5,10 +5,12 @@ if (!cart) {
     {
       productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       quantity: 1,
+      deliveryOptionId: '1',
     },
     {
       productId: "10ed8504-57db-433c-b0a3-fc71a35c88a1",
       quantity: 2,
+      deliveryOptionId: '2',
     },
   ];
 }
@@ -38,6 +40,7 @@ export function addToCart(productId) {
     cart.push({
       productId: productId,
       quantity: 1,
+      deliveryOptionId: '1',
     });
   }
   console.log(cart);
