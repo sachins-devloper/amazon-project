@@ -21,24 +21,35 @@ export function renderPaymentSummary() {
   const taxCents = totalBeforeTaxcents * 0.1;
   const totalCents = totalBeforeTaxcents + taxCents;
 
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+
   const renderPaymentSummaryHTML = `
          <div class="payment-summary-title">
           Order Summary
         </div>
 
         <div class="payment-summary-row">
-          <div>Items (3):</div>
-          <div class="payment-summary-money">$${formatCurrency(productPriceCents)}</div>
+          <div>Items (${cartQuantity}):</div>
+          <div class="payment-summary-money">$${formatCurrency(
+            productPriceCents
+          )}</div>
         </div>
 
         <div class="payment-summary-row">
           <div>Shipping &amp; handling:</div>
-          <div class="payment-summary-money">$${formatCurrency(shippingPriceCents)}</div>
+          <div class="payment-summary-money">$${formatCurrency(
+            shippingPriceCents
+          )}</div>
         </div>
 
         <div class="payment-summary-row subtotal-row">
           <div>Total before tax:</div>
-          <div class="payment-summary-money">$${formatCurrency(totalBeforeTaxcents)}</div>
+          <div class="payment-summary-money">$${formatCurrency(
+            totalBeforeTaxcents
+          )}</div>
         </div>
 
         <div class="payment-summary-row">
@@ -48,7 +59,9 @@ export function renderPaymentSummary() {
 
         <div class="payment-summary-row total-row">
           <div>Order total:</div>
-          <div class="payment-summary-money">$${formatCurrency(totalCents)}</div>
+          <div class="payment-summary-money">$${formatCurrency(
+            totalCents
+          )}</div>
         </div>
 
         <button class="place-order-button button-primary">
@@ -56,5 +69,6 @@ export function renderPaymentSummary() {
         </button>
     `;
 
-    document.querySelector('.js-payment-summary').innerHTML = renderPaymentSummaryHTML;
+  document.querySelector(".js-payment-summary").innerHTML =
+    renderPaymentSummaryHTML;
 }
