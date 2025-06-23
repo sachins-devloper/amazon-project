@@ -39,7 +39,6 @@ export let products = [];
 
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
-
   xhr.addEventListener("load", () => {
     products = JSON.parse(xhr.response).map((productDetails) => {
       return new Product(productDetails);
