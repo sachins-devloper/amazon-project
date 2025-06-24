@@ -44,13 +44,16 @@ export function loadProductsFetch() {
     })
     .then((ProductData) => {
       const products = ProductData.map((productDetails) => {
-      return new Product(productDetails);
-    });
+        return new Product(productDetails);
+      });
       console.log("load products");
-    });
+    }).catch((error) => {
+      console.log(error);
+    })
   return promise;
-}
+} 
 
+loadProductsFetch()
 
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
@@ -62,6 +65,11 @@ export function loadProducts(fun) {
     fun();
   });
 
+  xhr.addEventListener("error", (error) => {
+    console.log("Error occured");
+    console.log(error);
+    
+  });
   xhr.open("GET", "https://supersimplebackend.dev/products");
   xhr.send();
 }
